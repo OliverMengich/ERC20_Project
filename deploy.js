@@ -1,14 +1,22 @@
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 const secrets = require('./secretword.js');
 const Web3 = require('web3');
 const path = require('path');
 const fs = require('fs');
+const { exit } = require('process');
 
-console.log(secrets.mnemonic);
-const provider = new HDWalletProvider(
-    secrets.mnemonic,
-    ''
-);
+// const provider = new HDWalletProvider({
+//     mnemonic:{
+//         phrase: secrets.mnemonic,
+//     },
+//     providerOrUrl: 'http://localhost:7545',
+// });
+const privateKeys = [
+    'eaf1128847a9b3295e52d1f9542328393c1cbd91b8c08e7dd3bf9287e37030ce',
+    '5953d4f4ade838714a9f0ceb7135e39f17749fe45bdfef0df5c3efa578b0d6ec'
+]
+const provider = new HDWalletProvider(privateKeys, 'http://localhost:7545', 0, 2);
+// const provider = new HDWalletProvider('provider');
 const web3 = new Web3(provider);
 //define the contract's ABI
 const abiPath = path.resolve(__dirname,'bin','ERC20.abi');
@@ -25,4 +33,5 @@ const bytecode = fs.readFileSync(bytecodePath,'utf-8');
         .deploy({data: bytecode})
         .send({gas: '1000000', from: accounts[0]});
     console.log('Contract deployed to',result.options.address);
+    exit(0);
 })();

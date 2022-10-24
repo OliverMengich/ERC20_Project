@@ -10,6 +10,7 @@
   "author": "Oliver Kipkemei",
   "license": "ISC",
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.0",
     "solc": "^0.8.17",
     "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.8.0"
