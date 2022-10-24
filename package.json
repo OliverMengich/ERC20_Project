@@ -1,0 +1,17 @@
+{
+  "name": "erc20_project",
+  "version": "1.0.0",
+  "description": "ERC20 token project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Oliver Kipkemei",
+  "license": "ISC",
+  "dependencies": {
+    "solc": "^0.8.17",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "web3": "^1.8.0"
+  }
+}
