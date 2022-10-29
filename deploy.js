@@ -4,7 +4,6 @@ const Web3 = require('web3');
 const path = require('path');
 const fs = require('fs');
 const { exit } = require('process');
-
 // const provider = new HDWalletProvider({
 //     mnemonic:{
 //         phrase: secrets.mnemonic,
@@ -18,6 +17,7 @@ const privateKeys = [
 const provider = new HDWalletProvider(privateKeys, 'http://localhost:7545', 0, 2);
 // const provider = new HDWalletProvider('provider');
 const web3 = new Web3(provider);
+web3.utils.toWei('1','ether');
 //define the contract's ABI
 const abiPath = path.resolve(__dirname,'bin','ERC20.abi');
 const abi = JSON.parse(fs.readFileSync(abiPath,'utf-8'));
@@ -35,3 +35,4 @@ const bytecode = fs.readFileSync(bytecodePath,'utf-8');
     console.log('Contract deployed to',result.options.address);
     exit(0);
 })();
+provider.engine.stop();
